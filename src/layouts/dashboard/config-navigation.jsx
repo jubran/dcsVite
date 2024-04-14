@@ -57,70 +57,89 @@ export function useNavData() {
       // OVERVIEW
       // ----------------------------------------------------------------------
       {
-        subheader: 'البوابة الالكترونية',
+        subheader: t('overview'),
         items: [
           { title: t('dashboard'), path: paths.dashboard.root, icon: ICONS.dashboard },
-          { title: t('ft'), path: paths.dashboard.two, icon: ICONS.ecommerce },
+          { title: t('units'), path: paths.dashboard.two, icon: ICONS.ecommerce },
+          { title: t('fts'), path: paths.dashboard.three, icon: ICONS.analytics },
           { title: t('tanks'), path: paths.dashboard.three, icon: ICONS.analytics },
+          { title: t('fus'), path: paths.dashboard.three, icon: ICONS.analytics },
+          { title: t('night_report'), path: paths.dashboard.three, icon: ICONS.analytics },
         ],
       },
 
       // MANAGEMENT
       // ----------------------------------------------------------------------
       {
-        subheader: 'لوحة التحكم ',
+        subheader: t(''),
         items: [
           {
-            title: 'ملفي الشخصي',
+            title: t('sequence'),
             roles: ['admin', 'manager'],
             path: paths.dashboard.group.root,
             icon: ICONS.user,
             children: [
-              { title: 'نظرة عامة', path: paths.dashboard.group.root },
-              { title: 'تحديث', path: paths.dashboard.group.five },
+              { title: t('units'), path: paths.dashboard.group.root },
+              { title: t('fts'), path: paths.dashboard.group.five },
             ],
           },
           {
-            title: 'مجموعتي',
+            title: t('search'),
             path: paths.dashboard.group.root,
             icon: ICONS.user,
-            roles: ['manager'],
+            roles: ['admin', 'manager'],
             children: [
-              { title: 'الأعضاء', path: paths.dashboard.group.root },
-              { title: 'العضويات', path: paths.dashboard.group.five },
-              { title: 'جديد', path: paths.dashboard.group.six },
+              { title: t('operating_data'), path: paths.dashboard.group.root },
+              { title: t('cars_data'), path: paths.dashboard.group.five },
             ],
           },
           {
-            title: 'إدارة التشغيل',
+            title: t('safety'),
             path: paths.dashboard.group.root,
             icon: ICONS.user,
             children: [
-              { title: 'الأعضاء', path: paths.dashboard.group.root },
-              { title: 'العضويات', path: paths.dashboard.group.five },
-              { title: 'جديد', path: paths.dashboard.group.six },
+              { title: t('topic'), path: paths.dashboard.group.root },
+              { title: t('safe_work_procedure'), path: paths.dashboard.group.five },
+              { title: t('task_risk_assessment'), path: paths.dashboard.group.six },
             ],
           },
           {
-            title: 'إدارة البوابة',
+            title: t('forms'),
             path: paths.dashboard.group.root,
             icon: ICONS.user,
             children: [
-              { title: 'الأعضاء', path: paths.dashboard.group.root },
-              { title: 'العضويات', path: paths.dashboard.group.five },
-              { title: 'جديد', path: paths.dashboard.group.six },
+              { title: t('data_sheets'), path: paths.dashboard.group.root },
+              { title: t('wcm'), path: paths.dashboard.group.five },
+              { title: t('safety_forms'), path: paths.dashboard.group.six },
+              {
+                title: t('my_files'),
+                path: paths.dashboard.group.six,
+                disabled: true,
+                caption: 'تم تعطيل هذه الميزة من الإدارة' /* roles: ['manager']*/,
+              },
+            ],
+          },
+          {
+            title: t('control_panel'),
+            path: paths.dashboard.group.root,
+            icon: ICONS.user,
+            children: [
+              { title: t('my_profile'), path: paths.dashboard.group.root },
+              { title: t('my_group'), path: paths.dashboard.group.five },
+              { title: t('operation_dev'), path: paths.dashboard.group.six },
+              { title: t('web_site'), path: paths.dashboard.group.six /* roles: ['manager']*/ },
             ],
           },
         ],
       },
 
       {
-        subheader: 'خدمات البوابة',
+        subheader: t('dcs_dashboard'),
         items: [
-          { title: 'الملفات', path: paths.dashboard.root, icon: ICONS.dashboard },
-          { title: 'النماذج', path: paths.dashboard.two, icon: ICONS.ecommerce },
+          { title: t('general_notes'), path: paths.dashboard.root, icon: ICONS.dashboard },
+          { title: t('private_discation'), path: paths.dashboard.two, icon: ICONS.ecommerce },
           {
-            title: 'أخرى',
+            title: t('أخرى'),
             path: paths.dashboard.three,
             icon: ICONS.analytics,
             disabled: true,
