@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 
 import { useMockedUser } from 'src/hooks/use-mocked-user';
 
-import Label from 'src/components/label';
+import Iconify from 'src/components/iconify';
 
 // ----------------------------------------------------------------------
 
@@ -26,9 +26,21 @@ export default function NavUserShort() {
           <Avatar src={user?.photoURL} alt={user?.displayName} sx={{ width: 48, height: 48 }}>
             {user?.displayName?.charAt(0).toUpperCase()}
           </Avatar>
-
-          <Label
-            color="success"
+          <Iconify
+            style={{ color: '#f50057' }}
+            sx={{
+              top: -6,
+              px: 0.8,
+              left: 40,
+              height: 25,
+              position: 'absolute',
+              borderBottomLeftRadius: 2,
+            }}
+            icon="mynaui:danger-waves"
+            width={50}
+          />
+          {/* <Label
+            color="error"
             variant="filled"
             sx={{
               top: -6,
@@ -39,8 +51,8 @@ export default function NavUserShort() {
               borderBottomLeftRadius: 2,
             }}
           >
-            3
-          </Label>
+            <Iconify icon="solar:settings-bold-duotone" width={10} />
+          </Label> */}
         </Box>
 
         <Stack spacing={0.5} sx={{ mb: 2, mt: 1.5, width: 1 }}>
