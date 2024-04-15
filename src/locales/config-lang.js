@@ -2,7 +2,7 @@ import merge from 'lodash/merge';
 // date fns
 import
 {
-  enUS as enUSAdapter,
+  // enUS as enUSAdapter,
   arSA as arSAAdapter,
 } from 'date-fns/locale';
 
@@ -14,13 +14,13 @@ import
 // core (MUI)
 import
 {
-  enUS as enUSCore,
+  // enUS as enUSCore,
   arSA as arSACore,
 } from '@mui/material/locale';
 // data grid (MUI)
 import
 {
-  enUS as enUSDataGrid,
+  // enUS as enUSDataGrid,
   arSD as arSDDataGrid,
 } from '@mui/x-data-grid';
 
@@ -28,22 +28,22 @@ import
 // ----------------------------------------------------------------------
 
 export const allLangs = [
-  {
-    label: 'English',
-    value: 'en',
-    systemValue: merge( enUSDate, enUSDataGrid, enUSCore ),
-    adapterLocale: enUSAdapter,
-    icon: 'flagpack:gb-nir',
-    // icon: 'flagpack:us',
-    numberFormat: {
-      code: 'en-US',
-      currency: 'USD',
-    },
-  },
+  // {
+  //   label: 'English',
+  //   value: 'en',
+  //   systemValue: merge( enUSDate, enUSDataGrid, enUSCore ),
+  //   adapterLocale: enUSAdapter,
+  //   icon: 'flagpack:gb-nir',
+  //   // icon: 'flagpack:us',
+  //   numberFormat: {
+  //     code: 'en-US',
+  //     currency: 'USD',
+  //   },
+  // },
   {
     label: 'العربية',
     value: 'ar',
-    systemValue: merge( arSDDataGrid, arSACore ),
+    systemValue: merge( enUSDate, arSDDataGrid, arSACore ),
     adapterLocale: arSAAdapter,
     icon: 'flagpack:sa',
     numberFormat: {
@@ -53,4 +53,4 @@ export const allLangs = [
   },
 ];
 
-export const defaultLang = allLangs[ 0 ]; // English
+export const defaultLang = allLangs[ 0 ]; // Arabic

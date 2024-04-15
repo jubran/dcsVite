@@ -8,24 +8,57 @@ const ROOTS = {
 // ----------------------------------------------------------------------
 
 export const paths = {
-  minimalUI: 'https://mui.com/store/items/minimal-dashboard/',
   // AUTH
   auth: {
     jwt: {
-      login: `${ROOTS.AUTH}/jwt/login`,
-      register: `${ROOTS.AUTH}/jwt/register`,
+      login: `${ ROOTS.AUTH }/jwt/login`,
+      register: `${ ROOTS.AUTH }/jwt/register`,
     },
   },
   // DASHBOARD
   dashboard: {
     root: ROOTS.DASHBOARD,
-    one: `${ROOTS.DASHBOARD}/one`,
-    two: `${ROOTS.DASHBOARD}/two`,
-    three: `${ROOTS.DASHBOARD}/three`,
+    units: `${ ROOTS.DASHBOARD }/units`,
+    fts: `${ ROOTS.DASHBOARD }/fts`,
+    tanks: `${ ROOTS.DASHBOARD }/tanks`,
+    fus: `${ ROOTS.DASHBOARD }/fus`,
+    nightReport: `${ ROOTS.DASHBOARD }/nightReport`,
+    notes: `${ ROOTS.DASHBOARD }/notes`,
+    privateDiscution: `${ ROOTS.DASHBOARD }/privateDiscution`,
     group: {
-      root: `${ROOTS.DASHBOARD}/group`,
-      five: `${ROOTS.DASHBOARD}/group/five`,
-      six: `${ROOTS.DASHBOARD}/group/six`,
+      root: `${ ROOTS.DASHBOARD }/group`,
+      five: `${ ROOTS.DASHBOARD }/group/five`,
+      six: `${ ROOTS.DASHBOARD }/group/six`,
     },
+    administration: {
+      root: `${ ROOTS.DASHBOARD }/administration/myprofile`,
+      myProfile: `${ ROOTS.DASHBOARD }/administration/myprofile`,
+      myGroup: `${ ROOTS.DASHBOARD }/administration/myGroup`,
+      operationManagement: `${ ROOTS.DASHBOARD }/administration/operationManagement`,
+      siteManagement: `${ ROOTS.DASHBOARD }/administration/siteManagement`,
+    },
+    forms: {
+      root: `${ ROOTS.DASHBOARD }/forms/datasheets`,
+      datasheets: `${ ROOTS.DASHBOARD }/forms/datasheets`,
+      wcm: `${ ROOTS.DASHBOARD }/forms/wcm`,
+    },
+    search: {
+      root: `${ ROOTS.DASHBOARD }/search/search`,
+      vehicles: `${ ROOTS.DASHBOARD }/search/vehicles`,
+      search: `${ ROOTS.DASHBOARD }/search/search`,
+    },
+    safety: {
+      root: `${ ROOTS.DASHBOARD }/safety/swp`,
+      swp: `${ ROOTS.DASHBOARD }/safety/swp`,
+      tra: `${ ROOTS.DASHBOARD }/safety/tra`,
+    },
+    sequences: {
+      root: `${ ROOTS.DASHBOARD }/sequences/units`,
+      fts: `${ ROOTS.DASHBOARD }/sequences/fts`,
+      units: `${ ROOTS.DASHBOARD }/sequences/units`,
+    },
+
+
+
   },
 };

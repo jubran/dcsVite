@@ -3,8 +3,8 @@
 @font-face {
   font-family: 'GE-SS-Two-Medium';
   src:
-    url('../public/fonts/GE_SS_Two_Medium.otf'),
-    url('../public/fonts/GE_SS_Two_Medium.otf') format('woff');
+    url('../fonts/GE_SS_Two_Medium.otf'),
+    url('../fonts/GE_SS_Two_Medium.otf') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -19,8 +19,8 @@
 @font-face {
   font-family: 'GE-SS-Two-Light';
   src:
-    url('../public/fonts/GE_SS_Two_Light.otf'),
-    url('../public/fonts/GE_SS_Two_Light.otf') format('woff');
+    url('../fonts/GE_SS_Two_Light.otf'),
+    url('../fonts/GE_SS_Two_Light.otf') format('woff');
   font-weight: normal;
   font-style: normal;
 }

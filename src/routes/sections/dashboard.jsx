@@ -8,12 +8,35 @@ import { LoadingScreen } from 'src/components/loading-screen';
 
 // ----------------------------------------------------------------------
 
-const IndexPage = lazy(() => import('src/pages/dashboard/one'));
-const PageTwo = lazy(() => import('src/pages/dashboard/two'));
-const PageThree = lazy(() => import('src/pages/dashboard/three'));
 const PageFour = lazy(() => import('src/pages/dashboard/four'));
 const PageFive = lazy(() => import('src/pages/dashboard/five'));
 const PageSix = lazy(() => import('src/pages/dashboard/six'));
+
+const PageHome = lazy(() => import('src/pages/dashboard/helmets/homeP'));
+const PageFts = lazy(() => import('src/pages/dashboard/helmets/ftsP'));
+const PageFus = lazy(() => import('src/pages/dashboard/helmets/fusP'));
+const PageFuleTanks = lazy(() => import('src/pages/dashboard/helmets/fuel_tanksP'));
+const PageGeneralNotes = lazy(() => import('src/pages/dashboard/helmets/general_notesP'));
+const PageNightReport = lazy(() => import('src/pages/dashboard/helmets/night_reportP'));
+const PagePrivateDiscution = lazy(() => import('src/pages/dashboard/helmets/private_discutionP'));
+const PageUnits = lazy(() => import('src/pages/dashboard/helmets/unitsP'));
+
+const PageManageMyGroup = lazy(() => import('src/pages/dashboard/CPanel/myGroupP'));
+const PageManageMyProfile = lazy(() => import('src/pages/dashboard/CPanel/myProfileP'));
+const PageManageOperationDev = lazy(() => import('src/pages/dashboard/CPanel/operationDevP'));
+const PageManageSite = lazy(() => import('src/pages/dashboard/CPanel/siteAdminP'));
+
+const PageFormsDatasheet = lazy(() => import('src/pages/dashboard/forms/dataSheets'));
+const PageFormsWCM = lazy(() => import('src/pages/dashboard/forms/wcm'));
+
+const PageSafetySWP = lazy(() => import('src/pages/dashboard/safety/safeWorkPro'));
+const PageSafetyTRA = lazy(() => import('src/pages/dashboard/safety/taskRiskAss'));
+
+const PageSearchCars = lazy(() => import('src/pages/dashboard/search/searchCars'));
+const PageSearchOperating = lazy(() => import('src/pages/dashboard/search/searchOperating'));
+
+const PageSortFTS = lazy(() => import('src/pages/dashboard/sequence/sortFts'));
+const PageSortUnits = lazy(() => import('src/pages/dashboard/sequence/sortUnits'));
 
 // ----------------------------------------------------------------------
 
@@ -30,15 +53,57 @@ export const dashboardRoutes = [
       </AuthGuard>
     ),
     children: [
-      { element: <IndexPage />, index: true },
-      { path: 'two', element: <PageTwo /> },
-      { path: 'three', element: <PageThree /> },
+      { element: <PageHome />, index: true },
+      { path: 'units', element: <PageUnits /> },
+      { path: 'fts', element: <PageFts /> },
+      { path: 'tanks', element: <PageFuleTanks /> },
+      { path: 'fus', element: <PageFus /> },
+      { path: 'nightReport', element: <PageNightReport /> },
+      { path: 'notes', element: <PageGeneralNotes /> },
+      { path: 'privateDiscution', element: <PagePrivateDiscution /> },
       {
         path: 'group',
         children: [
           { element: <PageFour />, index: true },
           { path: 'five', element: <PageFive /> },
           { path: 'six', element: <PageSix /> },
+        ],
+      },
+      {
+        path: 'administration',
+        children: [
+          { path: 'myProfile', element: <PageManageMyProfile /> },
+          { path: 'myGroup', element: <PageManageMyGroup /> },
+          { path: 'operationManagement', element: <PageManageOperationDev /> },
+          { path: 'siteManagement', element: <PageManageSite /> },
+        ],
+      },
+      {
+        path: 'forms',
+        children: [
+          { path: 'datasheets', element: <PageFormsDatasheet /> },
+          { path: 'wcm', element: <PageFormsWCM /> },
+        ],
+      },
+      {
+        path: 'search',
+        children: [
+          { path: 'vehicles', element: <PageSearchCars /> },
+          { path: 'search', element: <PageSearchOperating /> },
+        ],
+      },
+      {
+        path: 'safety',
+        children: [
+          { path: 'swp', element: <PageSafetySWP /> },
+          { path: 'tra', element: <PageSafetyTRA /> },
+        ],
+      },
+      {
+        path: 'sequences',
+        children: [
+          { path: 'fts', element: <PageSortFTS /> },
+          { path: 'units', element: <PageSortUnits /> },
         ],
       },
     ],
