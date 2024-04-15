@@ -8,10 +8,6 @@ import { LoadingScreen } from 'src/components/loading-screen';
 
 // ----------------------------------------------------------------------
 
-const PageFour = lazy(() => import('src/pages/dashboard/four'));
-const PageFive = lazy(() => import('src/pages/dashboard/five'));
-const PageSix = lazy(() => import('src/pages/dashboard/six'));
-
 const PageHome = lazy(() => import('src/pages/dashboard/helmets/homeP'));
 const PageFts = lazy(() => import('src/pages/dashboard/helmets/ftsP'));
 const PageFus = lazy(() => import('src/pages/dashboard/helmets/fusP'));
@@ -61,14 +57,6 @@ export const dashboardRoutes = [
       { path: 'nightReport', element: <PageNightReport /> },
       { path: 'notes', element: <PageGeneralNotes /> },
       { path: 'privateDiscution', element: <PagePrivateDiscution /> },
-      {
-        path: 'group',
-        children: [
-          { element: <PageFour />, index: true },
-          { path: 'five', element: <PageFive /> },
-          { path: 'six', element: <PageSix /> },
-        ],
-      },
       {
         path: 'administration',
         children: [

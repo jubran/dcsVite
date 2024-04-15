@@ -25,40 +25,37 @@ export const paths = {
     nightReport: `${ ROOTS.DASHBOARD }/nightReport`,
     notes: `${ ROOTS.DASHBOARD }/notes`,
     privateDiscution: `${ ROOTS.DASHBOARD }/privateDiscution`,
-    group: {
-      root: `${ ROOTS.DASHBOARD }/group`,
-      five: `${ ROOTS.DASHBOARD }/group/five`,
-      six: `${ ROOTS.DASHBOARD }/group/six`,
-    },
+
     administration: {
-      root: `${ ROOTS.DASHBOARD }/administration/myprofile`,
+      root: `${ ROOTS.DASHBOARD }/administration`,
       myProfile: `${ ROOTS.DASHBOARD }/administration/myprofile`,
       myGroup: `${ ROOTS.DASHBOARD }/administration/myGroup`,
       operationManagement: `${ ROOTS.DASHBOARD }/administration/operationManagement`,
       siteManagement: `${ ROOTS.DASHBOARD }/administration/siteManagement`,
     },
+
     forms: {
-      root: `${ ROOTS.DASHBOARD }/forms/datasheets`,
+      root: `${ ROOTS.DASHBOARD }/forms`,
       datasheets: `${ ROOTS.DASHBOARD }/forms/datasheets`,
       wcm: `${ ROOTS.DASHBOARD }/forms/wcm`,
     },
+
     search: {
-      root: `${ ROOTS.DASHBOARD }/search/search`,
+      root: `${ ROOTS.DASHBOARD }/search`,
       vehicles: `${ ROOTS.DASHBOARD }/search/vehicles`,
       search: `${ ROOTS.DASHBOARD }/search/search`,
     },
+
     safety: {
-      root: `${ ROOTS.DASHBOARD }/safety/swp`,
+      root: `${ ROOTS.DASHBOARD }/safety`,
       swp: `${ ROOTS.DASHBOARD }/safety/swp`,
       tra: `${ ROOTS.DASHBOARD }/safety/tra`,
     },
+
     sequences: {
-      root: `${ ROOTS.DASHBOARD }/sequences/units`,
+      root: `${ ROOTS.DASHBOARD }/sequences`,
       fts: `${ ROOTS.DASHBOARD }/sequences/fts`,
       units: `${ ROOTS.DASHBOARD }/sequences/units`,
     },
-
-
-
   },
 };
