@@ -60,6 +60,7 @@ export const dashboardRoutes = [
       {
         path: 'administration',
         children: [
+          { element: <PageManageMyProfile />, index: true },
           { path: 'myProfile', element: <PageManageMyProfile /> },
           { path: 'myGroup', element: <PageManageMyGroup /> },
           { path: 'operationManagement', element: <PageManageOperationDev /> },
@@ -69,6 +70,7 @@ export const dashboardRoutes = [
       {
         path: 'forms',
         children: [
+          { element: <PageFormsDatasheet />, index: true },
           { path: 'datasheets', element: <PageFormsDatasheet /> },
           { path: 'wcm', element: <PageFormsWCM /> },
         ],
@@ -76,6 +78,7 @@ export const dashboardRoutes = [
       {
         path: 'search',
         children: [
+          { element: <PageSearchOperating />, index: true },
           { path: 'vehicles', element: <PageSearchCars /> },
           { path: 'search', element: <PageSearchOperating /> },
         ],
@@ -83,6 +86,7 @@ export const dashboardRoutes = [
       {
         path: 'safety',
         children: [
+          { element: <PageSafetySWP />, index: true },
           { path: 'swp', element: <PageSafetySWP /> },
           { path: 'tra', element: <PageSafetyTRA /> },
         ],
@@ -90,6 +94,7 @@ export const dashboardRoutes = [
       {
         path: 'sequences',
         children: [
+          { element: <PageSortFTS />, index: true },
           { path: 'fts', element: <PageSortFTS /> },
           { path: 'units', element: <PageSortUnits /> },
         ],
