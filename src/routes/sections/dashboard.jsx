@@ -94,7 +94,7 @@ export const dashboardRoutes = [
       {
         path: 'sequences',
         children: [
-          { element: <PageSortFTS />, index: true },
+          { element: <PageSortUnits />, index: true },
           { path: 'fts', element: <PageSortFTS /> },
           { path: 'units', element: <PageSortUnits /> },
         ],

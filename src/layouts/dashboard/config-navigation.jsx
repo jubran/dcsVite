@@ -86,8 +86,8 @@ export function useNavData() {
             path: paths.dashboard.sequences.root,
             icon: ICONS.user,
             children: [
-              { title: t('units'), path: paths.dashboard.sequences.units },
-              { title: t('fts'), path: paths.dashboard.sequences.fts },
+              { title: t('secUnits'), path: paths.dashboard.sequences.units },
+              { title: t('secFts'), path: paths.dashboard.sequences.fts },
             ],
           },
           {
