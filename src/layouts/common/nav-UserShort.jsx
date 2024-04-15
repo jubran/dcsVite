@@ -67,7 +67,7 @@ export default function NavUserShort() {
         {/* <Button
           variant="contained"
           color="error"
-          href={paths.minimalUI}
+          href={paths.Dashboard.root}
           target="_blank"
           rel="noopener"
           sx={{

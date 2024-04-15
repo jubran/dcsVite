@@ -1,6 +1,6 @@
 {
-  "name": "@minimal-kit/starter-vite-js",
-  "author": "Minimals",
+  "name": "@dcs-dashboard/build-with-vite-js",
+  "author": "Jobran Almalki",
   "version": "5.7.0",
   "description": "Vite Starter & JavaScript",
   "private": true,
