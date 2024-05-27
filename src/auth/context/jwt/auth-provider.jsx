@@ -3,6 +3,8 @@ import { useMemo, useEffect, useReducer, useCallback } from 'react';
 
 import axios, { endpoints } from 'src/utils/axios';
 
+import $ from 'jquery';
+
 import { AuthContext } from './auth-context';
 import { setSession, isValidToken } from './utils';
 
@@ -97,7 +99,7 @@ export function AuthProvider({ children }) {
     initialize();
   }, [initialize]);
 
-  // LOGIN
+  // LOGIN WITH HOST
   const login = useCallback(async (email, password) => {
     const data = {
       email,
@@ -121,6 +123,29 @@ export function AuthProvider({ children }) {
     });
   }, []);
 
+  // LOGIN WITH SQLITE3
+  // const login = useCallback(async (email, password) => {
+  //   const data = {
+  //     email,
+  //     password,
+  //   };
+
+  //   const response = await $.post('/api.php?action=fetchAuth', data);
+
+  //   const { accessToken, user } = response.data;
+
+  //   setSession(accessToken);
+
+  //   dispatch({
+  //     type: 'LOGIN',
+  //     payload: {
+  //       user: {
+  //         ...user,
+  //         accessToken,
+  //       },
+  //     },
+  //   });
+  // }, []);
   // REGISTER
   const register = useCallback(async (email, password, firstName, lastName) => {
     const data = {

@@ -1,5 +1,6 @@
 import isEqual from 'lodash/isEqual';
 import { useState, useEffect, useCallback } from 'react';
+import useSWR from 'swr';
 
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
@@ -21,7 +22,8 @@ import { RouterLink } from 'src/routes/components';
 
 import { useBoolean } from 'src/hooks/use-boolean';
 
-import { useGetProducts } from 'src/api/product';
+import { useGetProducts, useGetToday, useGetTodayEvents } from 'src/api/product';
+
 import { PRODUCT_STOCK_OPTIONS } from 'src/_mock';
 
 import Iconify from 'src/components/iconify';
@@ -40,6 +42,10 @@ import {
   RenderCellProduct,
   RenderCellCreatedAt,
 } from '../product-table-row';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import dayjs from 'dayjs';
 
 // ----------------------------------------------------------------------
 
@@ -72,6 +78,10 @@ export default function ProductListView() {
 
   const { products, productsLoading } = useGetProducts();
 
+  const { dcsToday2, setDcsTodayLoading } = useGetTodayEvents([]);
+
+  const [dcsData, setDcsData] = useState([]);
+
   const [tableData, setTableData] = useState([]);
 
   const [filters, setFilters] = useState(defaultFilters);
@@ -80,12 +90,21 @@ export default function ProductListView() {
 
   const [columnVisibilityModel, setColumnVisibilityModel] = useState(HIDE_COLUMNS);
 
+  const [dateValue, setValue] = useState(dayjs(Date.now()));
+  console.log(dateValue.format('YYYY-MM-DD'));
+
   useEffect(() => {
     if (products.length) {
       setTableData(products);
     }
   }, [products]);
 
+  useEffect(() => {
+    if (dcsToday2.length) {
+      setDcsData(dcsToday2);
+    }
+  }, [dcsToday2]);
+  console.log(dcsToday2);
   const dataFiltered = applyFilter({
     inputData: tableData,
     filters,
@@ -139,48 +158,65 @@ export default function ProductListView() {
 
   const columns = [
     {
-      field: 'category',
-      headerName: 'Category',
+      field: 'date1',
+      headerName: 'التاريخ',
+      headerAlign: 'center',
+      cellClassName: 'dcs-data-theme-cell',
       filterable: false,
+      disableColumnMenu: true,
+      sortable: false,
+      Width: 70,
     },
     {
-      field: 'name',
-      headerName: 'Product',
-      flex: 1,
-      minWidth: 360,
+      field: 'status1',
+      headerName: 'الحالة',
+      headerAlign: 'center',
+      cellClassName: 'dcs-data-theme-cell',
+      // flex: 1,
+      disableColumnMenu: true,
+      Width: 100,
       hideable: false,
-      renderCell: (params) => <RenderCellProduct params={params} />,
+      filterable: false,
+      sortable: false,
+      // renderCell: (params) => <RenderCellProduct params={params} />,
     },
     {
-      field: 'createdAt',
-      headerName: 'Create at',
-      width: 160,
-      renderCell: (params) => <RenderCellCreatedAt params={params} />,
+      field: 'action',
+      headerName: 'الوصف',
+      headerAlign: 'right',
+      cellClassName: 'dcs-data-theme-cell-left',
+      width: 400,
+      flex: 1,
+      disableColumnMenu: true,
+      filterable: false,
+      sortable: false,
+      // renderCell: (params) => <RenderCellCreatedAt params={params} />,
     },
     {
-      field: 'inventoryType',
-      headerName: 'Stock',
-      width: 160,
+      field: 'time1',
+      headerName: 'الوقت',
+      headerAlign: 'center',
+      cellClassName: 'dcs-data-theme-cell',
+      width: 100,
+      disableColumnMenu: true,
       type: 'singleSelect',
-      valueOptions: PRODUCT_STOCK_OPTIONS,
-      renderCell: (params) => <RenderCellStock params={params} />,
+      filterable: false,
+      sortable: false,
+      // renderCell: (params) => <RenderCellStock params={params} />,
     },
     {
-      field: 'prices',
-      headerName: 'Prices',
-      width: 140,
+      field: 'location',
+      headerName: 'الموقع',
+      headerAlign: 'center',
+      cellClassName: 'dcs-data-theme-cell',
+      width: 100,
+      disableColumnMenu: true,
+      filterable: false,
+      sortable: false,
       editable: true,
-      renderCell: (params) => <RenderCellPrice params={params} />,
+      // renderCell: (params) => <RenderCellPrice params={params} />,
     },
-    {
-      field: 'publish',
-      headerName: 'Publish',
-      width: 110,
-      type: 'singleSelect',
-      editable: true,
-      valueOptions: PUBLISH_OPTIONS,
-      renderCell: (params) => <RenderCellPublish params={params} />,
-    },
+
     {
       type: 'actions',
       field: 'actions',
@@ -195,19 +231,19 @@ export default function ProductListView() {
         <GridActionsCellItem
           showInMenu
           icon={<Iconify icon="solar:eye-bold" />}
-          label="View"
+          label="التفاصيل"
           onClick={() => handleViewRow(params.row.id)}
         />,
         <GridActionsCellItem
           showInMenu
           icon={<Iconify icon="solar:pen-bold" />}
-          label="Edit"
+          label="تحديث"
           onClick={() => handleEditRow(params.row.id)}
         />,
         <GridActionsCellItem
           showInMenu
           icon={<Iconify icon="solar:trash-bin-trash-bold" />}
-          label="Delete"
+          label="حذف"
           onClick={() => {
             handleDeleteRow(params.row.id);
           }}
@@ -233,23 +269,17 @@ export default function ProductListView() {
         }}
       >
         <CustomBreadcrumbs
-          heading="List"
-          links={[
-            { name: 'Dashboard', href: paths.dashboard.root },
-            {
-              name: 'Product',
-              href: paths.dashboard.root,
-            },
-            { name: 'List' },
-          ]}
+          heading="الرئيسية"
+          links={[{ name: 'ملخص هذا اليوم' }]}
           action={
             <Button
               component={RouterLink}
               href={paths.dashboard.root}
               variant="contained"
+              color="primary"
               startIcon={<Iconify icon="mingcute:add-line" />}
             >
-              New Product
+              إضافة حدث جديد
             </Button>
           }
           sx={{
@@ -271,9 +301,9 @@ export default function ProductListView() {
           <DataGrid
             checkboxSelection
             disableRowSelectionOnClick
-            rows={dataFiltered}
+            rows={dcsToday2}
             columns={columns}
-            loading={productsLoading}
+            loading={setDcsTodayLoading}
             getRowHeight={() => 'auto'}
             pageSizeOptions={[5, 10, 25]}
             initialState={{
@@ -290,15 +320,30 @@ export default function ProductListView() {
               toolbar: () => (
                 <>
                   <GridToolbarContainer>
-                    <ProductTableToolbar
+                    {/* <ProductTableToolbar
                       filters={filters}
                       onFilters={handleFilters}
                       stockOptions={PRODUCT_STOCK_OPTIONS}
                       publishOptions={PUBLISH_OPTIONS}
-                    />
+                    /> */}
 
-                    <GridToolbarQuickFilter />
-
+                    {/* <GridToolbarQuickFilter /> */}
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                      <DatePicker
+                        label="التاريخ"
+                        value={dateValue}
+                        format="YYYY-MM-DD"
+                        onChange={(newValue) => setValue(newValue)}
+                        variant="subtitle"
+                        slotProps={{ textField: { size: 'small' } }}
+                        sx={{
+                          '& .MuiInputBase-input': {
+                            fontSize: '16px',
+                            fontWeight: 'bold',
+                          },
+                        }}
+                      />
+                    </LocalizationProvider>
                     <Stack
                       spacing={1}
                       flexGrow={1}
@@ -317,9 +362,17 @@ export default function ProductListView() {
                         </Button>
                       )}
 
-                      <GridToolbarColumnsButton />
-                      <GridToolbarFilterButton />
-                      <GridToolbarExport />
+                      {/* <GridToolbarColumnsButton /> */}
+                      {/* <GridToolbarFilterButton /> */}
+                      {/* <GridToolbarExport /> */}
+                      <Button
+                        size="small"
+                        color="error"
+                        startIcon={<Iconify icon="gridicons:print" />}
+                        onClick={confirmRows.onTrue}
+                      >
+                        طباعة
+                      </Button>
                     </Stack>
                   </GridToolbarContainer>
 
@@ -334,12 +387,28 @@ export default function ProductListView() {
                   )}
                 </>
               ),
-              noRowsOverlay: () => <EmptyContent title="No Data" />,
-              noResultsOverlay: () => <EmptyContent title="No results found" />,
+              noRowsOverlay: () => <EmptyContent title="لاتوجد أحداث لهذا اليوم حتى هذه اللحضة" />,
+              noResultsOverlay: () => <EmptyContent title="لم يتم العثور على أحداث" />,
             }}
             slotProps={{
               columnsPanel: {
                 getTogglableColumns,
+              },
+            }}
+            sx={{
+              '& .dcs-data-theme-cell': {
+                // backgroundColor: 'rgba(224, 183, 60, 0.55)',
+                fontFamily: 'Public Sans, sans-serif',
+                fontWeight: 'bold',
+                color: '#1a3e72',
+                justifyContent: 'center',
+              },
+              '& .dcs-data-theme-cell-left': {
+                fontFamily: 'Public Sans, sans-serif',
+                fontWeight: 'bold',
+                color: '#1a3e72',
+                justifyContent: 'right',
+                textAlign: 'right',
               },
             }}
           />

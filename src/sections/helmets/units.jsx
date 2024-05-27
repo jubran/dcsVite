@@ -4,6 +4,7 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
 import { useSettingsContext } from 'src/components/settings';
+import { KanbanView } from '../kanban/view';
 
 // ----------------------------------------------------------------------
 
@@ -12,9 +13,7 @@ export default function UnitsView() {
 
   return (
     <Container maxWidth={settings.themeStretch ? false : 'xl'}>
-      <Typography variant="h4"> Unit View </Typography>
-
-      <Box
+      {/* <Box
         sx={{
           mt: 5,
           width: 1,
@@ -23,7 +22,8 @@ export default function UnitsView() {
           bgcolor: (theme) => alpha(theme.palette.grey[500], 0.04),
           border: (theme) => `dashed 1px ${theme.palette.divider}`,
         }}
-      />
+      /> */}
+      <KanbanView />
     </Container>
   );
 }
